@@ -28,20 +28,29 @@ function start() {
         if (err) throw err;
         // once you have the items, prompt the user for which they'd like to bid on
         inquirer
-            .prompt({
-                name: "Items",
-                type: "rawlist",
-                message: "select an item",
-                choices: function () {
-                    var choiceArray = [];
-                    for (var i = 0; i < results.length; i++) {
-                        choiceArray.push(results[i].product_name);
-                    }
-                    return choiceArray;
+            .prompt([
+                {
+                    name: "items",
+                    type: "rawlist",
+                    choices: function () {
+                        var choiceArray = [];
+                        for (var i = 0; i < results.length; i++) {
+                            choiceArray.push(results[i].product_name);
+                        }
+                        return choiceArray;
+                    },
+                    message: "Select an item"
+                },
+                {
+                    name: "amount",
+                    type: "input",
+                    message: "How many would you like to buy?"
                 }
-            }).then(function (answer) {
+            ])
+            .then(function (answer) {
                 console.log(answer);
             });
+
     })
 }
 
