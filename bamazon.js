@@ -35,7 +35,10 @@ function start() {
                     choices: function () {
                         var choiceArray = [];
                         for (var i = 0; i < results.length; i++) {
-                            choiceArray.push(results[i].product_name);
+                            //information from two database columns will be pushed into the choiceArr
+                            //this might make referencing the database difficult.
+                            choiceArray.push(results[i].product_name + " - Price: " + results[i].price);
+                    
                         }
                         return choiceArray;
                     },
@@ -48,7 +51,22 @@ function start() {
                 }
             ])
             .then(function (answer) {
-                console.log(answer);
+                var Item=answer.items;
+                console.log(Item);
+                var Amount=answer.amount;
+                console.log(Amount)
+                
+                //subtract the orderAmount from the inventory of the selected item
+                function inventoryUpdate(){
+                    //loop through your database
+
+                    //if the user's order matches an item in the database, update that item
+
+                    //if their are no items left, tell the user we are currently out of stock.
+                    //if the user's order amount exceeds what is available tell the user (we only have x items left)
+                    //else, complete their order
+
+                }
             });
 
     })
