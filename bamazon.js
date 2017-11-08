@@ -1,6 +1,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 
+
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
@@ -75,23 +76,27 @@ function start() {
                                 
                                 match=true;
                                 console.log(results[i].product_name + " " + match);
+                                console.log(results[i].stock_quantity);
                                 break;
                                 //update the database*****
-                           
+                                //subtract answer.amount from results[i].stock_quantity
+                               
                             
 
-                                //if match is true query the database for 
+                                //if match is true query the database 
                                 //if the order amount exceeds the items in stock console.log("We only have x items in stock")
 
                                 //if the items in stock = 0 console.log("this item is out of stock")
-                            }else if(answer.amount>results[i].stock_quantity){
+                            }else if(match===false && results[i].stock_quantity>0){
+                                        console.log("I'm sorry, we don't have that many in stock");
                                         break;
-                                        console.log("I'm sorry, we don have that many in stock");
-                                    }else if(results[i].stock_quantity=0){
+                                    }else if(match===false && results[i].stock_quantity===0){
+                                        
+                                        console.log("I'm sorry, this item is out of stock");
                                         break;
-                                        console.log("I'm sorry, but we are out of this item");
                                     }
                         }
+                    
                     });
 
                 }
