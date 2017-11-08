@@ -81,18 +81,35 @@ function start() {
                                 //update the database*****
                                 //subtract answer.amount from results[i].stock_quantity
                                
-                            
+                               
+                                //   ("UPDATE products SET ? WHERE ?",
+                                //     [
+                                //       {
+                                //         stock_quantity:  -answer.amount
+                                //       },
+                                //       {
+                                //         product_name: answer.items
+                                //       }
+                                //     ],
+                                //     function(error) {
+                                //         if (error) throw err;
+                                //         console.log("the inventory has been updated!");
+                                //         start();
+                                //         break;
+                                //       }
+                                //     );
+                                    
 
                                 //if match is true query the database 
-                                //if the order amount exceeds the items in stock console.log("We only have x items in stock")
+                                //if the order amount exceeds the items in stock console.log("I'm sorry, we don't have that many items in stock.")
 
-                                //if the items in stock = 0 console.log("this item is out of stock")
-                            }else if(match===false && results[i].stock_quantity>0){
-                                        console.log("I'm sorry, we don't have that many in stock");
+                                
+                            }else if(answer.amount>results[i].stock_quantity){
+                                        console.log("I'm sorry, we don't have that many in stock.");
                                         break;
-                                    }else if(match===false && results[i].stock_quantity===0){
-                                        
-                                        console.log("I'm sorry, this item is out of stock");
+                                        //if the items in stock = 0 console.log("this item is out of stock")
+                                    }else if(results[i].stock_quantity===0){ 
+                                        console.log("I'm sorry, this item is out of stock.");
                                         break;
                                     }
                         }
