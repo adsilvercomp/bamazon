@@ -27,6 +27,7 @@ function start() {
     // query the database for all items on the products table.
     connection.query("SELECT * FROM products", function (err, results) {
         if (err) throw err;
+        console.log(results);
         // once you have the items, prompt the user for which they'd like to bid on
         inquirer
             .prompt([
@@ -53,71 +54,77 @@ function start() {
                 }
             ])
             .then(function (answer) {
-                // var Item = answer.items;
-                // console.log(Item);
-                // var Amount = answer.amount;
-                // console.log(Amount)
-                inventoryUpdate();
+                var item = answer.items;
+                console.log(item);
+                var amount = answer.amount;
+                console.log(amount)
+                inventoryCheck();
 
                 //subtract the orderAmount from the inventory of the selected item
-                function inventoryUpdate() {
+                function inventoryCheck() {
                     var chosenProduct;
                     //if the chosen item matches an item in the database and the order amount is less than the 
                     //amount the databse has in stock, update the database by subtracting the order amount from the inventory
 
                     //query the database for all product names
-                    connection.query("SELECT * FROM products", function (err, results) {
+                    connection.query(`SELECT * FROM products WHERE product_name = "${item}"`, function (err, results) {
                         if (err) throw err;
+                        console.log("hello ", results);
                         //loop through the product names
-                        var match=false;
-                        for (var i = 0; i < results.length; i++) {
-                            //if the user's order matches the item name & the order amount doesnt exceed the items in stock
-                            if (answer.items === results[i].product_name && answer.amount<results[i].stock_quantity) {
-                                
-                                match=true;
-                                console.log(results[i].product_name + " " + match);
-                                console.log(results[i].stock_quantity);
-                                break;
-                                //update the database*****
-                                //subtract answer.amount from results[i].stock_quantity
-                               
-                               
-                                //   ("UPDATE products SET ? WHERE ?",
-                                //     [
-                                //       {
-                                //         stock_quantity:  -answer.amount
-                                //       },
-                                //       {
-                                //         product_name: answer.items
-                                //       }
-                                //     ],
-                                //     function(error) {
-                                //         if (error) throw err;
-                                //         console.log("the inventory has been updated!");
-                                //         start();
-                                //         break;
-                                //       }
-                                //     );
-                                    
-
-                                //if match is true query the database 
-                                //if the order amount exceeds the items in stock console.log("I'm sorry, we don't have that many items in stock.")
-
-                                
-                            }else if(answer.amount>results[i].stock_quantity){
-                                        console.log("I'm sorry, we don't have that many in stock.");
-                                        break;
-                                        //if the items in stock = 0 console.log("this item is out of stock")
-                                    }else if(results[i].stock_quantity===0){ 
-                                        console.log("I'm sorry, this item is out of stock.");
-                                        break;
-                                    }
-                        }
                     
+
+                        // var selectedProduct = item
+
+                        // var subtract = results[i].stock_quantity - amount
+
+                       
+                            //if the user's order matches the item name & the order amount doesnt exceed the items in stock
+                            if (amount < results[0].stock_quantity) {
+
+                                var newAmount = results[0].stock_quantity - amount;
+                                
+                               
+                                updateProduct(newAmount);
+                               
+
+                            } else if (item === results[i].product_name && amount > results[i].stock_quantity) {
+                                console.log("I'm sorry, we don't have that many in stock.");
+                               
+                                //if the items in stock = 0 console.log("this item is out of stock")
+                            } else if (item === results[i].product_name && results[i].stock_quantity === 0) {
+                                console.log("I'm sorry, this item is out of stock.");
+                               
+                            }
+                        
+
                     });
 
+                        
                 }
+
+                    function updateProduct(newAmount){
+                        console.log("updating inventory for " + item);
+                        connection.query("UPDATE products SET ? WHERE ?",
+                        [
+                            {
+                                stock_quantity: newAmount
+                            },
+                            {
+                                product_name: item
+                            }
+
+                        ],
+                        function(err, res){
+                         console.log(res.affectedRows + "product updated")
+                         console.log(res);  
+                         start();
+                        }
+
+                    )}
+
             });
+
+            
 
     })
 }
