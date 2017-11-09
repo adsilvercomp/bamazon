@@ -86,11 +86,11 @@ function start() {
                                 updateProduct(newAmount);
                                
 
-                            } else if (item === results[i].product_name && amount > results[i].stock_quantity) {
+                            } else if (item === results[0].product_name && amount > results[0].stock_quantity) {
                                 console.log("Insufficient quantity.");
                                
                                 //if the items in stock = 0 console.log("this item is out of stock")
-                            } else if (item === results[i].product_name && results[i].stock_quantity === 0) {
+                            } else if (item === results[0].product_name && results[0].stock_quantity === 0) {
                                 console.log("I'm sorry, this item is out of stock.");
                                
                             }
@@ -127,7 +127,3 @@ function start() {
 
     })
 }
-
-
-
-
