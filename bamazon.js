@@ -27,7 +27,7 @@ function start() {
     // query the database for all items on the products table.
     connection.query("SELECT * FROM products", function (err, results) {
         if (err) throw err;
-        console.log(results);
+        // console.log(results);
         // once you have the items, prompt the user for which they'd like to bid on
         inquirer
             .prompt([
@@ -55,9 +55,9 @@ function start() {
             ])
             .then(function (answer) {
                 var item = answer.items;
-                console.log(item);
+             
                 var amount = answer.amount;
-                console.log(amount)
+                
                 inventoryCheck();
 
                 //subtract the orderAmount from the inventory of the selected item
@@ -69,7 +69,7 @@ function start() {
                     //query all columns from the product table where the product_name = the item the customer selected.
                     connection.query(`SELECT * FROM products WHERE product_name = "${item}"`, function (err, results) {
                         if (err) throw err;
-                        console.log("hello ", results);
+                        var prodPrice = results[0].price;
                     
 
                         // var selectedProduct = item
@@ -84,7 +84,7 @@ function start() {
                                 
                                
                                 updateProduct(newAmount);
-                               
+                                payedPrice(amount, prodPrice);
 
                             } else if (item === results[0].product_name && amount > results[0].stock_quantity) {
                                 console.log("Insufficient quantity.");
@@ -114,12 +114,18 @@ function start() {
 
                         ],
                         function(err, res){
-                         console.log(res.affectedRows + "product updated")
-                         console.log(res);  
-                         start();
+                         console.log(res.affectedRows + " product updated")
+                         
+                         
                         }
 
                     )}
+
+                    function payedPrice(amount, prodPrice){
+                       var orderPrice = amount * prodPrice;
+                       console.log("The price of your purchase is $" + orderPrice );
+                        start();
+                    }
 
             });
 
