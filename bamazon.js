@@ -66,11 +66,10 @@ function start() {
                     //if the chosen item matches an item in the database and the order amount is less than the 
                     //amount the databse has in stock, update the database by subtracting the order amount from the inventory
 
-                    //query the database for all product names
+                    //query all columns from the product table where the product_name = the item the customer selected.
                     connection.query(`SELECT * FROM products WHERE product_name = "${item}"`, function (err, results) {
                         if (err) throw err;
                         console.log("hello ", results);
-                        //loop through the product names
                     
 
                         // var selectedProduct = item
@@ -78,7 +77,7 @@ function start() {
                         // var subtract = results[i].stock_quantity - amount
 
                        
-                            //if the user's order matches the item name & the order amount doesnt exceed the items in stock
+                            //if the user's order amount doesnt exceed the items in stock update the inventory.
                             if (amount < results[0].stock_quantity) {
 
                                 var newAmount = results[0].stock_quantity - amount;
@@ -88,7 +87,7 @@ function start() {
                                
 
                             } else if (item === results[i].product_name && amount > results[i].stock_quantity) {
-                                console.log("I'm sorry, we don't have that many in stock.");
+                                console.log("Insufficient quantity.");
                                
                                 //if the items in stock = 0 console.log("this item is out of stock")
                             } else if (item === results[i].product_name && results[i].stock_quantity === 0) {
