@@ -11,8 +11,7 @@
 
 **MySQL Product Table**
 
-![Image 1 of Product Table]
-(images/productTable1.png)
+![Image 1 of Product Table](images/productTable1.png)
 
 
 
@@ -20,19 +19,16 @@
 
 *The user is presented with all of the items for sale as well as their price and is asked to select one of the items.*
 
-![Image 1 and 2 of initial User Prompt]
-(images/commandLine1.png)
-(images/commandLine2.png)
+![Image 1 of initial User Prompt](images/commandLine1.png)
+![Image 2 of initial User Prompt](images/commandLine2.png)
 
 *Once the user chooses an item, they are asked the amount of that item they would like to purchase*
 
-![Image of second user prompt]
-(images/commandLine3.png)
+![Image of second user prompt](images/commandLine3.png)
 
 *Once the user chooses the amount of the item they would like to purchase they are presented with the total price, if there are enough items in stock.*
 
-![Image of command line displaying the total price]
-(images/commandLine4.png)
+![Image of command line displaying the total price](images/commandLine4.png)
 
 
 
@@ -42,8 +38,7 @@
 
 *After the user's purchase, the Database is updated*
 
-![image 2 of Product Table]
-(images/productTable2.png)
+![image 2 of Product Table](images/productTable2.png)
 
 
 
@@ -52,6 +47,5 @@
 **Command Line Interface**
 
 *If the user tries to purchase an out of stock item, they will be told that the item is out of stock*
-![Out of stock images]
-(images/commandLine5.png)
-(images/commandLine6.png)
+![Out of stock image 1](images/commandLine5.png)
+![Out of stock image 2](images/commandLine6.png)
