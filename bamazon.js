@@ -36,10 +36,13 @@ function start() {
                     type: "rawlist",
                     choices: function () {
                         var choiceArray = [];
+                        console.log("ITEMS FOR SALE");
                         for (var i = 0; i < results.length; i++) {
                             //information from two database columns will be pushed into the choiceArr
                             //this might make referencing the database difficult.
                             choiceArray.push(results[i].product_name);
+                            
+                            console.log(results[i].product_name + " : $" +results[i].price);
                             // " - Price: " + results[i].price
 
                         }
@@ -78,7 +81,7 @@ function start() {
 
                        
                             //if the user's order amount doesnt exceed the items in stock update the inventory.
-                            if (amount < results[0].stock_quantity) {
+                            if (amount <= results[0].stock_quantity) {
 
                                 var newAmount = results[0].stock_quantity - amount;
                                 
@@ -90,7 +93,9 @@ function start() {
                                 console.log("Insufficient quantity.");
                                
                                 //if the items in stock = 0 console.log("this item is out of stock")
-                            } else if (item === results[0].product_name && results[0].stock_quantity === 0) {
+                            } 
+                            
+                            if (item === results[0].product_name && results[0].stock_quantity === 0) {
                                 console.log("I'm sorry, this item is out of stock.");
                                
                             }
