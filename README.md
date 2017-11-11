@@ -26,7 +26,7 @@
 
 ![Image of second user prompt](images/commandLine3.png)
 
-*Once the user chooses the amount of the item they would like to purchase they are presented with the total price, if there are enough items in stock.*
+*Once the user chooses the amount of the item they would like to purchase, they are presented with the total price, if there are enough items in stock.*
 
 ![Image of command line displaying the total price](images/commandLine4.png)
 
