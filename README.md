@@ -22,7 +22,7 @@
 ![Image 1 of initial User Prompt](images/commandLine1.png)
 ![Image 2 of initial User Prompt](images/commandLine2.png)
 
-*Once the user chooses an item, they are asked the amount of that item they would like to purchase*
+*Once the user chooses an item, they are prompted for the quantity of the item that they would like to purchase.*
 
 ![Image of second user prompt](images/commandLine3.png)
 
@@ -36,7 +36,7 @@
 
 **Updated MySQL Product Table**
 
-*After the user's purchase, the Database is updated*
+*After the user's purchase, the Database is updated.*
 
 ![image 2 of Product Table](images/productTable2.png)
 
@@ -46,6 +46,6 @@
 
 **Command Line Interface**
 
-*If the user tries to purchase an out of stock item, they will be told that the item is out of stock*
+*If the user tries to purchase an out of stock item, they will be told that the item is out of stock.*
 ![Out of stock image 1](images/commandLine5.png)
 ![Out of stock image 2](images/commandLine6.png)
