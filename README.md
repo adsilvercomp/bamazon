@@ -47,5 +47,6 @@
 **Command Line Interface**
 
 *If the user tries to purchase an out of stock item, they will be told that the item is out of stock.*
+*Similarly, if the user's purchase exceeds the quantity available in the invetory, the program will say, "insufficient quantity".*
 ![Out of stock image 1](images/commandLine5.png)
 ![Out of stock image 2](images/commandLine6.png)
