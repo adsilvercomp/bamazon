@@ -22,7 +22,7 @@
 ![Image 1 of initial User Prompt](images/commandLine1.png)
 ![Image 2 of initial User Prompt](images/commandLine2.png)
 
-*Once the user chooses an item, they are prompted for the quantity of the item that they would like to purchase.*
+*Once the user chooses an item, they are prompted for the quantity that they would like to purchase.*
 
 ![Image of second user prompt](images/commandLine3.png)
 
